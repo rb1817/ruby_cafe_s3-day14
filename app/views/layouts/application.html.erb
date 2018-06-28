@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DaumCafe</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <%= render 'shared/nav'%>
+    <div class = "container">
+    <% flash.each do |k,v| %>
+    <div class = "alert alert-<%=k%>"><%=v%></div>
+    <% end %>
+    <%= yield %>
+    <!--<%= render 'shared/footer'%>-->
+    </div>
+    </div>
+  </body>
+</html>

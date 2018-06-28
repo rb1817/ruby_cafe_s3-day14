@@ -1,0 +1,54 @@
+
+<h1>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</h1>
+
+<hr/>
+
+<p>
+  <strong>Contents:</strong>
+  <%= @post.contents %>
+</p>
+<p>
+  <strong>Thumb fit:</strong>
+  <img src ="<%= @post.image_path.thumb_fit.url%>"/>
+</p>
+<p>
+  <strong>Thumb fill:</strong>
+  <img src ="<%= @post.image_path.thumb_fill.url%>"/>
+</p>
+<p>
+  <strong>ImagePath:</strong>
+  <img src ="<%= @post.image_path %>"width="100%"/>
+</p>
+
+<!-- edit_post_path(@post) post.id 라도 @post로 사용가능-->
+<%= link_to '수정', edit_post_path(@post), class: "btn btn-warning text-white "%> |
+<%= link_to '목록', cafe_path(@post.daum) ,class: "btn btn-info text-white"%> |
+<%= link_to '삭제', post_path(@post),class: "btn btn-danger text-white",method: "delete"%>
+
+<!-- 댓글-->
+<%=render 'comments/form', post: @post%>
+
+ 
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">content</th>
+      <th scope="col">Button</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post.comments.each do |comment|%>
+    <tr>
+      <th scope="row"><%=comment.id%></th>
+      <td><%= comment.content%></td>
+      <td><%= link_to "삭제", "/comments/#{comment.id}",method: "delete"%></td>
+    </tr>
+   <%end%>
+  </tbody>
+</table>
